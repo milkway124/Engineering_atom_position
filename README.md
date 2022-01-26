@@ -4,6 +4,7 @@ Density Functional Theory이 적용된 Quantum espresso(QE)와 VASP에 사용하
 POSCAR 파일 (Atom의 위치와 lattice 구조가 담긴 파일)을 원하는 방향으로 변형시키는 코드들
 
 ### 1. 작은 unit-cell
+기본적인 구조 파일 (POSCAR 파일)은 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 눈으로 파악한다.
 
 ### 2. supercell로 늘리기
 
