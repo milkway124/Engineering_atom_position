@@ -6,10 +6,11 @@ Density Functional Theory이 적용된 [Quantum espresso](https://www.quantum-es
 fractional coordinate로 기술 되어있다. 이 atom들을 원하는 방향으로 변형시키는 코드들을 총 5가지에 대해 알아본다.
 
 관련된 모든 코드는 linux에서 사용을 하기 위해서 작성이 되었습니다.
+
 또한 언어는 python과 bash언어로 이루어져 있습니다.
 ___
 #### 1. 작은 unit-cell 생성 및 예제
-기본적인 구조 파일 (POSCAR 파일)은 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 눈으로 파악한다.
+기본적인 구조 파일 (POSCAR 파일)은 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 시각적으로 파악한다.
 
 Example : Diamond, Silicon, h-BN ...
 
