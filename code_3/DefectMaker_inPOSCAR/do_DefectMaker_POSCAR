@@ -1,0 +1,13 @@
+#!/bin/sh
+
+RmAtom='B'
+RmAtomPosition="0.500000000    0.547626139    0.799401197"
+
+ChAtom='N'
+NewAtom='n'
+limitRange='0.05' #fraction
+
+POSCARfile=POSCAR_bubble_28
+DefectPOSCARfile=POSCAR_test
+
+DefectMaker_POSCAR ${RmAtom} "${RmAtomPosition}" ${ChAtom} ${NewAtom} ${limitRange} ${POSCARfile} ${DefectPOSCARfile}

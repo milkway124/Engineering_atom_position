@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#1.output
+savefile=POSCAR_stack_test
+
+#2.input
+POSCAR1=POSCAR_pillarshape_Z_3_5_FWHM_10_NoShift_wi_VB
+posi1=0.25
+
+#3.input
+POSCAR2=POSCAR_pillarshape_Z_3_5_FWHM_10_NoShift
+posi2=0.75
+
+./Stacking_POSCAR.py $savefile $POSCAR1 $posi1 $POSCAR2 $posi2

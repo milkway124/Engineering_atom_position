@@ -1,0 +1,108 @@
+#!/bin/sh
+
+#example of code
+#
+# InsertAtom  {Defect_related_file}  {Defect Atom name}  {POSCARfile}  {save_POSCARfile}
+#
+#################################################
+#
+# Defectfile='DefectSite_VB_5' #only consider one atom
+# InsertDefectName="VB" #input defect name
+#
+# POSCARFile='POSCAR_bubble_VB_5'
+# DefectPOSCARFile='POSCAR_bubble_insert_VB_5'
+#
+#################################################
+
+#check input parameter
+if [ $# -ne 4 ]; then
+    echo -e "Now # of parameter is $#\n"
+    echo "Need 4 parameter"
+    echo "{1} : Defectfile, {2} : InsertDefect Atom Name, {3} : POSCARfile, {4} : DefectPOSCARfile"
+    exit 1
+else
+    Defectfile=${1} #only consider one atom     --> "B 0.xxx 0.xxx 0.xxx"
+    InsertDefectName=${2} #input defect name    --> "VB" or "A" or ...
+    POSCARFile=${3} #the POSCARfile which want to ref
+    DefectPOSCARFile=${4} #save POSCARfile 
+fi
+
+#check the file exit
+if [ ! -f $POSCARfile ]; then
+    echo "POSCAR file Not Exit"
+    exit 1
+fi
+if [ ! -f $Defectfile ]; then
+    echo "Defect file Not Exit"
+    exit 1
+fi
+
+#function code
+function SearchAtomName {
+    Name=$(echo `cat ${1}` | cut -f 1 -d ' ')
+    echo "$Name"
+}
+
+function SearchAtomData {
+    X=$(echo `cat ${1}` | cut -f 2 -d ' ')
+    Y=$(echo `cat ${1}` | cut -f 3 -d ' ')
+    Z=$(echo `cat ${1}` | cut -f 4 -d ' ')
+    echo "$X $Y $Z"
+}
+
+function ChangeAtomData {
+    DefectPOSCAR=${1}
+    DefectName=${2}
+
+    ntypDATA=`sed -n '6p' ${DefectPOSCAR}`
+    natDATA=`sed -n '7p' ${DefectPOSCAR}`
+
+    ntype=$(echo $ntypDATA | wc -w)
+    
+    NEWntypDATA=""
+    NEWnatDATA=""
+    CheckNum=0
+    for i in `seq 1 $ntype`
+    do
+        ONEAtom=$(echo $ntypDATA | cut -f $i -d ' ')
+        ONEnat=$(echo $natDATA | cut -f $i -d ' ')
+    
+        if [ "$ONEAtom" == "${DefectName}" ];then
+            ONEnat=$((ONEnat+1))
+            CheckNum=$((CheckNum+1))
+        fi
+        
+        NEWntypDATA+="${ONEAtom} "
+        NEWnatDATA+="${ONEnat} "
+    done
+
+    if [ $CheckNum = 0 ];then
+        NEWntypDATA+="${DefectName} "
+        NEWnatDATA+="1 "
+    fi
+
+    sed -i "6s/.*/$NEWntypDATA/g" ${DefectPOSCAR}
+    sed -i "7s/.*/$NEWnatDATA/g" ${DefectPOSCAR}
+}
+
+function PutInDefectData {
+    echo ${2} >> ${1}
+}
+
+function RMnewLine {
+    sed -i "s///g" ${1}
+}
+
+
+
+#main
+DefectfileAtomName=$(SearchAtomName ${Defectfile})
+DefectFileAtomData=$(SearchAtomData ${Defectfile})
+
+cp ${POSCARFile} ${DefectPOSCARFile}
+
+ChangeAtomData ${DefectPOSCARFile} ${InsertDefectName}
+
+PutInDefectData ${DefectPOSCARFile} "${DefectFileAtomData}"
+
+RMnewLine ${DefectPOSCARFile}

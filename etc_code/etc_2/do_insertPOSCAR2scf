@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+POSCARfile=POSCAR_h_BN_Flat_1L_VB
+
+SCFfile_before=scf_before.in
+SCFfile_after=scf_after.in
+
+cp $SCFfile_before $SCFfile_after
+
+
+./InsertPOSCAR2SCF $POSCARfile $SCFfile_after
+

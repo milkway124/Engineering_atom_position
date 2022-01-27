@@ -1,0 +1,78 @@
+#!/bin/sh
+source ChangeATom.sh 
+source ReMoverATom.sh
+
+#example of code
+#
+# DefectMaker_POSCAR ${Remove 1 Atom} ${Removed Atom position} ${Nearest Atom name} ${Nearest Atom's New name} ${Nearest Rnage} ${POSCARfile} ${savePOSCARfile}
+#
+#
+############################################### 
+# RmATom='B'
+# RmATomPosi="0.500000000    0.547626139    0.799401197"
+# 
+# ChATom='N'
+# limitRange='0.05' #Not angstrom, fraction
+# NewATom='n'
+# 
+# POSCARFILE='POSCAR_bubble_28'
+# DeFectFILE='POSCAR_bubble_VB_28'
+#
+############################################### 
+
+#check the file exit
+if [ $# -ne 7 ]; then
+    echo -e "Now # of parameter is $#\n"
+    echo "Need 7 parameter"
+    echo "{1} : Remove target one Atom, {2} : the target Atom position(fraction coordination)"
+    echo "{1} : ${1}, {2} : ${2}"
+    echo ""
+    echo "{3} : Nearest atom name, {4} : new name of Nearest atom, {5} : Nearest range(recommand default : 0.05)"
+    echo "{3} : ${3}, {4} : ${4}"
+    echo ""
+    echo "{6} : POSCARfile, {7} : save POSCARfile"
+    echo "{6} : ${6}, {7} : ${7}"
+    exit 1
+else
+
+    RmATom=${1}
+    RmATomPosi=${2}
+    
+    ChATom=${3}
+    NewATom=${4}
+    limitRange=${5} #Not angstrom, fraction
+    
+    POSCARFILE=${6}
+    DeFectFILE=${7}
+    
+fi
+
+#check the file exit
+if [ ! -f $POSCARFILE ]; then
+    echo "POSCAR file Not Exit"
+    exit 1
+fi
+#remove newline parameter
+sed -i "s///g" $POSCARFILE
+
+
+#main code
+cp ${POSCARFILE}  ${DeFectFILE}
+        
+echo "Start remove atom in ${DeFectFILE}"
+    
+#remove VB atom
+ChangATOM ${DeFectFILE} ${RmATom}
+Rmline=$(FINDTargetATOMDATA ${DeFectFILE} ${RmATomPosi})
+RemoveATOMDATA ${DeFectFILE} ${Rmline}
+
+#change N atom to n atom
+echo "Change neighborhood ATOM($ChATom) to $NewATom"
+Newline=$(SearchNewATOMDATA ${DeFectFILE} ${RmATomPosi} ${limitRange})
+echo "NewAtom($NewATom) : $Newline"
+ChangeNewATOMDATA ${DeFectFILE} ${ChATom} ${NewATom} "${Newline}"
+        
+
+RMnewLINE ${DeFectFILE}
+        
+echo -e "Finish!\n"

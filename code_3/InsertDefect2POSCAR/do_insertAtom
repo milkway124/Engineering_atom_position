@@ -1,0 +1,18 @@
+#!/bin/sh
+
+Defectfile=DefectSite_VB_5
+InsertDefectName='VB'
+
+POSCARfile=POSCAR_bubble_VB_5
+DefectPOSCARfile=POSCAR_bubble_insert_VB_5
+
+./InsertATom $Defectfile $InsertDefectName $POSCARfile $DefectPOSCARfile
+
+
+Defectfile=DefectSite_pillar_VB_Z_3_5
+InsertDefectName='VB'
+
+POSCARfile=POSCAR_pillarshape_Z_3_5_FWHM_10
+DefectPOSCARfile=POSCAR_pillarshape_Z_3_5_FWHM_10_insert_VB
+
+./InsertATom $Defectfile $InsertDefectName $POSCARfile $DefectPOSCARfile

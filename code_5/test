@@ -1,0 +1,8 @@
+POSCAR_pillarshape_Z_3_5_FWHM_10_NoShift_wi_VB
+!Input File name :  POSCAR_pillarshape_Z_3_5_FWHM_10_NoShift_wi_VB
+0
+335
+Total Class Check :
+[[30.038784, 0.0, 0.0], [0.0, 30.351862, 0.0], [0.0, 0.0, 11.6595365]]
+{'B': 167, 'N': 165, 'n': 3}
+!Save File name is :  POSCAR_stack_test

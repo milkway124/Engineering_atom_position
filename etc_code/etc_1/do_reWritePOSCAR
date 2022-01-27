@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+POSCARfile=POSCAR_bubble_VB_Z_3_5_FWHM_10_strain10P
+rewritePOSCAR=POSCAR_bubble_VB_Z_3_5_FWHM_10_strain10P_FullEdge
+
+
+python reWritePOSCAR.py $POSCARfile $rewritePOSCAR
+
+
+echo ""
+
+POSCARfile=POSCAR_pillarshape_Z_3_5_FWHM_10
+rewritePOSCAR=POSCAR_pillarshape_Z_3_5_FWHM_10_flat_zone
+
+python reWritePOSCAR.py $POSCARfile $rewritePOSCAR True True

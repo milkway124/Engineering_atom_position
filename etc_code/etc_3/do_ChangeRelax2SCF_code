@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+
+./ChangeRelax2SCF relax.out scf.in
