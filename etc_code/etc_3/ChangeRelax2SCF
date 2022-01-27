@@ -1,0 +1,52 @@
+#!/bin/sh
+
+
+
+#check input parameter
+if [ $# -ne 2 ]; then
+    echo -e "Now # parameter is $#\n"
+    echo "Need 2 parameter"
+    echo "First : 'Relax.out File' & Second : 'Scf.in File'"
+    exit 1
+else
+    RelaxFile=${1}
+    ScfFile=${2}
+    echo "Start convert Relax OutFile to Scf InFile!"
+    echo "Relax OutFile : $RelaxFile"
+    echo "ScfFile       : $ScfFile"
+fi
+
+
+#check the file exit
+if [ ! -f $RelaxFile ]; then
+    echo "RelaxFile Not Exit!!"
+    exit 1
+fi
+
+if [ ! -f $ScfFile ]; then
+    echo "ScfFile Not Exit!!"
+    exit 1
+fi
+
+#find the relaxed atomic position in relax.out file    
+POSI_ATOM=`grep -n "ATOMIC_POSITIONS" $RelaxFile | cut -d: -f1 | tail -n 1`
+POSI_END=`grep -n "End final" $RelaxFile | cut -d: -f1 | tail -n 1`
+
+#remove the before relaxed atomic position in scf.in file
+POSI_SCF_ATOMIC=`grep -n "ATOMIC_POSITIONS" $ScfFile | cut -d: -f1`
+Prev_nat=`grep -n "nat" $ScfFile | cut -d: -f1`
+Prev_num_nat=`sed -n ${Prev_nat}p $ScfFile | cut -f 2 -d '='`
+if [ -n "${POSI_SCF_ATOMIC}" ]; then
+    sed -i "$POSI_SCF_ATOMIC,$(($POSI_SCF_ATOMIC+$Prev_num_nat))d" $ScfFile
+fi
+
+#insert the relaxed atomic position in scf.in file
+head -n $(($POSI_END-1)) $RelaxFile | tail -n $(($POSI_END-POSI_ATOM)) >> $ScfFile
+
+
+#remove newline text
+sed -i 's///g' $ScfFile
+
+echo "FIN!"
+
+
