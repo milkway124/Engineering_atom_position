@@ -7,6 +7,7 @@ ___
 기본적인 구조 파일 (POSCAR 파일)은 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 눈으로 파악한다.
 예제 물질) Diamond, Silicon, h-BN ...
 
+***
 ### 2. 작은 unit-cell을 큰 크기의 supercell로 늘리기
 작은 unit-cell을 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 늘릴 수도 있지만,
 직접 작성한 코드를 이용하여 원하는 크기로 늘리는 작업을 수행한다.
