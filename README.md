@@ -9,7 +9,7 @@ ___
 #### 1. 작은 unit-cell 생성 및 예제
 기본적인 구조 파일 (POSCAR 파일)은 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 눈으로 파악한다.
 
-예제 물질: Diamond, Silicon, h-BN ...
+Example : Diamond, Silicon, h-BN ...
 
 
 ___
@@ -21,7 +21,8 @@ ___
 ___
 #### 3. Defect를 supercell에 넣기
 크게 키운 supercell에 원하는 defect을 넣는다.
-예를 들어, VB 결함이 있는 h-BN, VNNB 결함이 있는 Diamond, ...
+
+Example : VB 결함이 있는 h-BN, VNNB 결함이 있는 Diamond, ...
 
 추가적으로 Defect 주위에 atom들도 다른 이름으로 특정을 짓어 POSCAR 파일을 재생성한다.
 
