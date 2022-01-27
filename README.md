@@ -50,6 +50,6 @@ ___
 
 
 
-#### Etc 3. QE을 통해 Relaxed된 파일을 POSCAR 파일로 변환하기
+#### Etc 3. QE을 통해 Relaxed된 파일을 input-file (scf.in)로 직접 변환하기
 
 
