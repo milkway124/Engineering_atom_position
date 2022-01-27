@@ -13,8 +13,9 @@ POSCAR 파일 (Atom의 위치와 lattice 구조가 담긴 파일)을 원하는 �
 
 ### 3. Defect를 supercell에 넣기
 크게 키운 supercell에 원하는 defect을 넣는다.
-예를 들어, V_B가 있는 h-BN, V_NNB가 있는 Diamond, ...
+예를 들어, VB 결함이 있는 h-BN, VNNB 결함이 있는 Diamond, ...
 
+추가적으로 Defect 주위에 atom들도 다른 이름으로 특정을 짓어 POSCAR 파일을 재생성한다.
 
 ### 4. 2차원 supercell을 구조 변형 (Bubble, Cone, Pillar, Cross 모양)
 2차원 물질중에 대표적으로 h-BN을 이용하여 구조 변형을 시킨다.
