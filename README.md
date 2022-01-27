@@ -11,7 +11,7 @@ ___
 ### 2. 작은 unit-cell을 큰 크기의 supercell로 늘리기
 작은 unit-cell을 [VESTA](https://jp-minerals.org/vesta/en/)을 이용하여 늘릴 수도 있지만,
 직접 작성한 코드를 이용하여 원하는 크기로 늘리는 작업을 수행한다.
-
+---
 ### 3. Defect를 supercell에 넣기
 크게 키운 supercell에 원하는 defect을 넣는다.
 예를 들어, VB 결함이 있는 h-BN, VNNB 결함이 있는 Diamond, ...
