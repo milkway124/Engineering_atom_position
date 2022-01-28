@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+#for file in POSCAR_hBN_221 
+for file in POSCAR_hBN_221 POSCAR_hBN_331 POSCAR_sil_222 POSCAR_sil_333 POSCAR_sil_444
+do
+
+defect1=N
+defect2=VB
+inputfile=1.before_test_file/${file}
+outputfile=2.after_test_file/${file}_${defect1}_${defect2}
+
+./DefectMaker.py $inputfile $outputfile $defect1 $defect2
+
+done
